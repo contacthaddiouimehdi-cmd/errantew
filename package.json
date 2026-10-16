@@ -1,0 +1,10 @@
+{
+  "name": "odc-maroc-prompting",
+  "private": true,
+  "description": "Orange Maroc image-prompting system for ODC workshop visuals",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "try": "node scripts/try-prompt.js"
+  },
+  "engines": { "node": ">=18" }
+}
