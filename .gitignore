@@ -2,3 +2,5 @@ node_modules/
 out/contact-sheets/
 out/*.mp4
 out/preview/
+out/.bundle/
+out/stills/components/
