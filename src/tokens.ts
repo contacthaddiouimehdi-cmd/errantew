@@ -6,6 +6,10 @@ export const WIDTH = 1920;
 export const HEIGHT = 1080;
 export const DURATION = 3000;
 
+// Music territory: 100 BPM → one beat every 15 frames at 25 fps. Cuts and hits sit on this grid.
+export const BPM = 100;
+export const BEAT = (60 / BPM) * FPS;
+
 // Core colours. Text may only use orange, black or white.
 export const core = {
   orange: '#FF7900',

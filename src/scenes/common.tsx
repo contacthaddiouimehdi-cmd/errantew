@@ -4,6 +4,7 @@ import {Align, Anim, Super, TileStyle, VAlign, styles} from '../components/Tile'
 import {VerticalPanel} from '../components/Panels';
 import {T, tx} from '../copy';
 import {Lang} from '../format';
+import {BEAT} from '../tokens';
 
 export type SceneProps = {lang: Lang; version: 'internal' | 'external'; final: boolean};
 
@@ -34,3 +35,6 @@ export const Shot: React.FC<{id: string; from: number; dur: number; x?: number; 
     <VerticalPanel id={id} duration={dur} x={x} opacity={opacity} />
   </Sequence>
 );
+
+// Local frame of the n-th beat after a scene's start, on the film's global 100 BPM grid.
+export const beats = (sceneStart: number) => (n: number): number => Math.ceil(sceneStart / BEAT) * BEAT + n * BEAT - sceneStart;

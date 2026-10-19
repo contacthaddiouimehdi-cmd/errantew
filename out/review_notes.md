@@ -7,70 +7,68 @@ Living document: open questions, placeholders, deviations. Updated at each check
 | Step | State |
 |---|---|
 | 0 · Inventory | Done. No assets in the repo (`docs/inventory.md`). |
-| 1 · Footage log | **Blocked**: the Drive folder can't be read from the render container. `out/footage_log.md` lists the 36 shots the animatic needs. |
+| 1 · Footage log | **Blocked**: footage unreachable. `out/footage_log.md` lists the 36 shots the film needs. |
 | 2 · Design system | Approved 19 Oct. |
-| 3 · Animatic | Built, awaiting checkpoint 3 review: `out/preview/animatic_{en,fr}_internal.mp4` (960×540) and `out/stills/`. |
-| 4 · Final | Blocked by the facts and assets listed below. `scripts/render-all.sh` is ready and refuses to run until they are in. |
+| 3 · Animatic | **v2 rebuilt on the FGC_VF storytelling** (orange thread, digital impact, 100 BPM grid). Awaiting review. |
+| 4 · Final | Blocked by the facts and assets below. `scripts/render-all.sh` refuses to run until they are in. |
+
+Previews: `out/preview/animatic_{en,fr}_internal_beatguide.mp4` (1080p, with a temp 100 BPM beat guide) and silent versions. Stills: `out/stills/` (27 key frames per language).
+
+## What changed in v2 (FGC_VF)
+
+- **The orange thread** runs through the whole film (`src/components/Thread.tsx`): it ties a knot (S1 line 2), grows into a tangle (line 4), unties (line 5), swings upright to split the screen, welds back at the centre (line 8), links the partners one by one, branches into a network of schools, runs like a road (line 14), traces the route with 7 stops on 7 beats, follows Mehdi's ball, draws the passport, turns like a key, splits into branches for the numbers, closes around "One programme · Two seasons" and underlines "holidays" / "vacances". It is gone before the packshot and never touches the logo.
+- **Digital impact first**: S6 is now six KPI screens (setup, reach, Mehdi Amri effect, platforms, ground, all year), from the campaign's organic figures (Jul–Sep 2026).
+- **100 BPM grid**: every cut, stamp, route stop and screen change sits on a beat (15 frames). The licensed track should be 100 BPM, phase-aligned to frame 0.
+- **Title tile C** is now "A societal & environmental impact" / "Un impact sociétal et environnemental", per FGC_VF.
+- **Mission 2** description follows FGC_VF ("Un jeu de cartes sur 6 thèmes numériques du quotidien").
+- **Small numbers** (under 20, and percentages) land directly; only larger numbers count up.
+- **Placeholders** now say what each shot should show.
+
+## To confirm with you / Orange
+
+1. **Brief conflict, engagement rates.** The original brief said never to show engagement rates; FGC_VF shows "1.6% interaction" (Mehdi collab) and "TikTok 2.5% interaction". I followed FGC_VF. Confirm, or I drop those two lines.
+2. **English adaptation** of the FGC_VF lines is mine (FR is the master). Check in particular: "Mehdi Amri collab", "#1 content of the campaign", "twice the other reels", "4 cross-posts" (Facebook Orange Maroc branch).
+3. **Facebook Orange Maroc branch** in screen 1 shows "4 cross-posts" (the 4 Instagram posts), so the five branches add up to 33 while the hero says 29 posts. Alternative: show that branch without a number.
+4. **Mehdi Amri name**, used in S4 and in the S6 kicker, still unconfirmed (Mehdi Amri / Mehdi El Amri).
+5. Optional, not shown: + 309.5K sponsored impressions, + 47 followers, 1.0% global interaction rate (FGC_VF lists them as optional or not shown).
 
 ## Blockers
 
-1. **Footage folder unreachable.** The Drive connector can see the folder `Forgoodconnection` (owner mahdi@pbcompany.net) but not its files, and direct downloads from `drive.google.com` are refused by this cloud environment's network policy. Either fix works:
-   - add `drive.google.com`, `drive.usercontent.google.com` and `*.googleusercontent.com` to the environment's Allowed domains (cloud environment menu → Edit → Network access), or
-   - share the folder with contacthaddiouimehdi@gmail.com directly (not only by link), so the connector can list and fetch the files.
-2. **Licensed music.** Without it, cuts sit on a 50-frame grid (2 s) and the stamp hits on f1875, f1935 and f1995. Everything moves to the real beats once the track is in.
-3. **Helvetica Neue 75 Bold / 55 Roman** not supplied. Drafts use FreeSans (a Helvetica clone in the render container).
-4. **Orange master logo** (`public/brand/orange_logo_master.png`) and **sonic logo**: the packshot shows a placeholder. The logo is never redrawn.
+1. **Footage unreachable.** The Drive folders (Forgoodconnection; Orange Talents 2026 / For Good Connections), the Instagram reel and the LinkedIn post are all refused by this cloud environment's network policy, and the Drive connector can see the folders but not their files. Fix: add `drive.google.com`, `drive.usercontent.google.com` and `*.googleusercontent.com` to the environment's Allowed domains (cloud environment menu → Edit → Network access), or share the folders directly with contacthaddiouimehdi@gmail.com.
+2. **Licensed music** (100 BPM, two proposals expected per FGC_VF). The preview uses a temp beat guide (`scripts/beat-guide.sh`), never the final audio.
+3. **Helvetica Neue 75 Bold / 55 Roman**. Drafts use FreeSans.
+4. **Orange master logo** and **sonic logo**. The packshot shows a placeholder.
 
 ## Missing, handled by the system (no blocker)
 
-- **Partner logos** (Ministry, ONDE, DGSN, ADD, ReSIS): S3 shows names in 55 Roman black on the white band until approved files land in `public/brand/partners/` (file names starting `ministere`, `onde`, `dgsn`, `add`, `resis`).
-- **#ForGoodConnections brand assets**: none used. The hashtag is set in tiles per the Orange video guidelines; no FGC lockup is drawn.
+- **Partner logos** (Ministry, ONDE, DGSN, ADD, ReSIS): names in 55 Roman black on the white band until approved files land in `public/brand/partners/`.
+- **#ForGoodConnections brand assets**: none used; the hashtag is set in tiles.
 
-## Facts awaiting the client (`src/facts.ts`)
+## Facts (`src/facts.ts`)
 
-`npx tsx scripts/check-facts.ts` today: **2 failures** (KIDS, MEHDI_AMRI_NAME), 3 slots dropped.
+`npx tsx scripts/check-facts.ts`: **2 failures** (KIDS, MEHDI_AMRI_NAME); TEACHERS_TRAINED, SCHOOLS_REACHED, STAT_PROBLEM dropped in the final if still null. All FGC_VF digital figures are entered as confirmed with FGC_VF as their source.
 
 | Key | Draft shows | Needed | Final behaviour if still missing |
 |---|---|---|---|
-| KIDS | 1,500+ in an orange-outlined box | Confirm 1,500+ (estimate) vs 749 (documented) | Final blocked |
-| MEHDI_AMRI_NAME | "Mehdi Amri" in an orange-outlined box | Confirm "Mehdi Amri" vs "Mehdi El Amri" | Final blocked |
-| TEACHERS_TRAINED | [XX] | Result from ministry recap (6,500+ is a target, never shown) | S3 line 12, R7 and the lockup's teachers part are dropped; S5 re-times to fill |
-| SCHOOLS_REACHED | [XX] | Result from ministry recap (2,200+ is a target, never shown) | S3 line 12 and R7 dropped |
-| STAT_PROBLEM (optional) | slot skipped | Sourced Moroccan cyberbullying figure, if any | Skipped |
-| ORGANIC_REACH_EXTRA (optional) | not shown | 309.5K, only if the client approves | Not shown |
+| KIDS | 1,500+ in an orange-outlined box | 1,500+ (estimate) vs 749 (documented) | Final blocked |
+| MEHDI_AMRI_NAME | "Mehdi Amri" in an orange-outlined box | Spelling | Final blocked |
+| TEACHERS_TRAINED / SCHOOLS_REACHED | [XX] | Ministry results (targets never shown) | S3 line 12 and S6 screen 6 numbers dropped; the lockup stays |
 
-Note: the brief says to drop R7 and the lockup's teachers part. I apply the same rule to S3 line 12, which carries the same two numbers.
+## Timeline (25 fps, 3,000 frames, 2:00; beats every 15 frames)
 
-## Animatic (checkpoint 3)
+| Scene | Frames | Content |
+|---|---|---|
+| S0 Title | 0–125 | Title tiles on black |
+| S1 Problem | 125–500 | Lines 1–4; knot on line 2, tangle on line 4 (first beat, f405) |
+| S2 Idea | 500–750 | Untie, split screen (divider = thread), weld on line 8 |
+| S3 Season 1 | 750–1300 | Chapter, partners linked by the thread, network, numbers |
+| S4 Season 2 | 1300–1775 | Triptych, road, words, route (stops f1530–1620), Mehdi + ball thread |
+| S5 Mechanic | 1775–2200 | Passport drawn by the thread, stamps f1875 / f1920 / key / f1965, certified, workshops, live |
+| S6 Numbers | 2200–2750 | Six screens, flashes between |
+| S7 Closing | 2750–3000 | Line 24 underlined, hashtag, packshot from f2930 |
 
-Timings are final per the arc (3,000 frames, exactly 2:00 at 25 fps, checked with ffprobe). Scene by scene (local frames):
+## Deviations from the original brief
 
-- **S0** f0–125. Internal: title tile at f10, B and C cut in at f30 and f38, 8-frame fade ending f125. External toggle: "Orange" (orange on white) / "presents" f6–56, then the title tile (orange) from f62.
-- **S1** 375 frames. Panel shots cut every 50 frames. Lines 2 and 4 on pure black at headline size. Line 4 lands on local f280, the planned first beat hit. The STAT_PROBLEM slot is skipped while null.
-- **S2** 250 frames. Split screen; the inactive half dims to 40% for lines 6 and 7, each set under its half. Line 8 on black, headline size.
-- **S3** 550 frames. Chapter on black, three recap shots with lines 9–11. "Built with" + partner band on black (f150–260). Line 12 on black with count-ups.
-- **S4a** 175 frames: chapter (36), triptych + line 13, the three words cut in 6 frames apart on their panels, then line 14 on black (61 frames).
-- **S4b** 200 frames: route drawn over 140 frames, stops every ~20 frames, tour panels at 25% swap at f100. Line 15 in an orange tile.
-- **S4c** 100 frames: panel off-centre left. Name super and line 16 on the right.
-- **S4d** 300 frames: line 17 alone on black, passport from f55, stamps at f100 / f160 / f220 with matching footage on the right, then line 21.
-- **S4e** 125 frames: workshops triptych, line 22 + #EngageForChange cut in under it, live-content triptych with line 23.
-- **S5** 550 frames: R1–R5 and R7 get 70 frames each (count-up 20, hold, hard cut, 10-frame flash), R6 gets 60. Lockup f2680–2750.
-- **S6** 250 frames: line 24 (2 lines, "holidays" / "vacances" orange), hashtag tile, packshot (10-frame fades, ends on black at f3000).
-
-## Decisions to confirm at checkpoint 3
-
-1. **S4c name super** sits on the right (x 960) with line 16, not lower-left: the panel occupies the left and the brief puts the supers on the right.
-2. **R6 press** is set as the names in orange at 150 px over "In the press" in 55 Roman (the colon form "In the press: Le360…" is split across the two tiles).
-3. **S4a is tight**: the chapter tile holds 36 frames and line 14 holds 61 frames. If line 14 reads too fast, I can take 10–15 frames from line 13.
-4. **Count-ups** show "+" only on the final value (1,500+).
-5. **Lines over footage** sit in the lower third (y 930); lines on black are centred, at headline size where the brief asks for weight.
-
-## Decisions confirmed at checkpoint 2
-
-Tile clear space from cap height and baseline; balanced wrapping; stagger offset = the next tile's "o" width with a 4-frame settle; name in white tile / function in black; chapter and mission titles split on " · " into orange + white tiles; mission descriptions capitalised; passport header text; place supers 56/40 px clamped to margins; U+00A0 for French spacing; "Centre ReSIS" (name still to be confirmed by the client).
-
-## Deviations from the brief
-
-- S4c name super position (see above).
-- No audio yet: music, natural sound, the −8 dB ducking and the loudness pass come with the licensed track (`render-all.sh` runs the two-pass loudnorm to −16 LUFS / −1 dBTP).
-- No subtitles yet: they depend on speech in the footage.
+- Engagement rates shown (see "To confirm" 1).
+- S4 name super on the right of the Mehdi panel.
+- No audio yet beyond the temp beat guide; no subtitles yet (they depend on speech in the footage).

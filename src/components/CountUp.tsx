@@ -12,7 +12,8 @@ export const factRun = (key: FactKey, lang: Lang, frame: number, at: number, run
   const final = display(key, lang);
   if (final === null) return {...run, text: '[XX]', placeholder: true};
   let text = final;
-  if (f.count) {
+  // Small values (under 20, percentages) land directly: counting to 3 is only flicker.
+  if (f.count && f.count.to >= 20) {
     const p = interpolate(frame - at, [0, timing.countUp], [0, 1], {
       extrapolateLeft: 'clamp',
       extrapolateRight: 'clamp',

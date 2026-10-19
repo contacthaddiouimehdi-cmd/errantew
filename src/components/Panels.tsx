@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
-import {shot} from '../footageMap';
+import {shot, wantedShots} from '../footageMap';
 import {HEIGHT, layout as L, WIDTH} from '../tokens';
 import {PlaceholderBox} from './Placeholder';
 
@@ -8,7 +8,7 @@ import {PlaceholderBox} from './Placeholder';
 const Clip: React.FC<{id: string; w: number; h: number; from: number; volume?: number}> = ({id, w, h, from, volume = 0}) => {
   const {fps} = useVideoConfig();
   const s = shot(id);
-  if (!s) return <PlaceholderBox x={0} y={0} w={w} h={h} title={`Shot · ${id}`} detail="footage pending" />;
+  if (!s) return <PlaceholderBox x={0} y={0} w={w} h={h} title={wantedShots[id]?.want ?? `Shot · ${id}`} detail={`${id} · footage pending`} />;
   return (
     <OffthreadVideo
       src={staticFile(s.file)}
@@ -35,7 +35,8 @@ export const VerticalPanel: React.FC<{
 }> = ({id, x = (WIDTH - L.panel.w) / 2, y = (HEIGHT - L.panel.h) / 2, from = 0, duration = 100, pushIn = true, opacity = 1, volume}) => {
   const frame = useCurrentFrame();
   if (frame < from) return null;
-  const scale = pushIn ? interpolate(frame - from, [0, duration], [1, 1 + L.panelPushIn], {extrapolateRight: 'clamp'}) : 1;
+  // Placeholders stay unscaled so their outline is not pushed out of the panel.
+  const scale = pushIn && shot(id) ? interpolate(frame - from, [0, duration], [1, 1 + L.panelPushIn], {extrapolateRight: 'clamp'}) : 1;
   return (
     <div style={{position: 'absolute', left: x, top: y, width: L.panel.w, height: L.panel.h, overflow: 'hidden', opacity}}>
       <div style={{width: '100%', height: '100%', transform: `scale(${scale})`}}>

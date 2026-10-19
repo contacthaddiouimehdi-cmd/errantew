@@ -56,7 +56,7 @@ const Lines: React.FC<{lang: Lang}> = ({lang}) => (
   <>
     <Super text={tx(copy.s1.l1, lang)} style={styles.super()} y={300} anim={{at: 0}} />
     <Super text={tx(copy.s3.l9, lang)} style={styles.super('white', 'black')} y={540} anim={{at: 0}} />
-    <Super text={tx(copy.s4a.l14, lang)} style={styles.super('orange', 'white')} y={800} anim={{at: 0}} />
+    <Super text={tx(copy.s4.l14, lang)} style={styles.super('orange', 'white')} y={800} anim={{at: 0}} />
   </>
 );
 
@@ -78,14 +78,14 @@ const Numbers: React.FC<{lang: Lang}> = ({lang}) => {
   const frame = useCurrentFrame();
   return (
     <>
-      <HeroNumber runs={(f) => [factRun('PEOPLE_ON_SITE', lang, f, 0)]} label={tx(copy.s5.r1, lang)} y={330} anim={{at: 0}} />
+      <HeroNumber runs={(f) => [factRun('PEOPLE_ON_SITE', lang, f, 0)]} label={tx(copy.s6.ground.label, lang)} y={330} anim={{at: 0}} />
       <TileStack
         x={960}
         y={760}
         align="center"
         items={[
           {runs: richRuns(copy.s3.l12a[lang], lang, frame, 0, {colour: 'orange', weight: 'bold'}), style: styles.super('black', 'white', 'roman')},
-          {runs: richRuns(copy.s5.lockupKids[lang], lang, frame, 0, {colour: 'orange', weight: 'bold'}), style: styles.super('black', 'white', 'roman')},
+          {runs: richRuns(copy.s6.ground.stats[0][lang], lang, frame, 0, {colour: 'orange', weight: 'bold'}), style: styles.super('black', 'white', 'roman')},
         ]}
       />
     </>
@@ -98,8 +98,8 @@ const PassportDemo: React.FC<{lang: Lang}> = ({lang}) => {
   return (
     <>
       <Passport lang={lang} x={px} y={py} stamps={{m1: 0, m2: 0, unlock: 0}} />
-      <MissionTile title={copy.s4d.m2.title[lang]} desc={copy.s4d.m2.desc[lang]} lang={lang} at={0} x={px + passportSize.w + 56} y={py + slotY[1]} />
-      <VerticalPanel id="s4d-dome-1" x={1920 - 40 - 600} pushIn={false} />
+      <MissionTile title={copy.s5.m2.title[lang]} desc={copy.s5.m2.desc[lang]} lang={lang} at={0} x={px + passportSize.w + 56} y={py + slotY[1]} />
+      <VerticalPanel id="s5-dome" x={1920 - 40 - 600} pushIn={false} />
     </>
   );
 };
@@ -111,7 +111,7 @@ export const galleryItems: Record<string, {frame: number; render: (lang: Lang) =
   ChapterTile: {frame: 40, render: (lang) => <ChapterTile text={copy.s3.chapter[lang]} lang={lang} at={0} />},
   NameSuper: {
     frame: 40,
-    render: (lang) => <NameSuper name={[factRun('MEHDI_AMRI_NAME', lang, 0, 0)]} fn={tx(copy.s4c.fn, lang)} at={0} />,
+    render: (lang) => <NameSuper name={[factRun('MEHDI_AMRI_NAME', lang, 0, 0)]} fn={tx(copy.s4.fn, lang)} at={0} />,
   },
   PlaceSuper: {frame: 40, render: (lang) => <PlaceSuper place="Agadir" date="11.07" x={960} y={540} vAlign="top" anim={{at: 0}} />},
   CountUp: {frame: 40, render: (lang) => <Numbers lang={lang} />},
@@ -128,8 +128,8 @@ export const galleryItems: Record<string, {frame: number; render: (lang: Lang) =
       </>
     ),
   },
-  VerticalPanel: {frame: 10, footageBg: false, render: () => <VerticalPanel id="s1-phones-1" pushIn={false} />},
-  Triptych: {frame: 10, footageBg: false, render: () => <Triptych ids={['s4a-crowd', 's4a-stage', 's4a-football']} />},
+  VerticalPanel: {frame: 10, footageBg: false, render: () => <VerticalPanel id="s1-phone-1" pushIn={false} />},
+  Triptych: {frame: 10, footageBg: false, render: () => <Triptych ids={['s4-crowd', 's4-stage', 's4-football']} />},
   SplitScreen: {
     frame: 30,
     footageBg: false,
@@ -148,9 +148,9 @@ export const galleryItems: Record<string, {frame: number; render: (lang: Lang) =
     render: (lang) => (
       <>
         {[0, 1, 2].map((i) => (
-          <VerticalPanel key={i} id={`s4b-tour-${i + 1}`} x={40 + i * 620} pushIn={false} opacity={0.25} />
+          <VerticalPanel key={i} id={`s4-tour-${i + 1}`} x={40 + i * 620} pushIn={false} opacity={0.25} />
         ))}
-        <TourRoute lang={lang} at={0} draw={140} />
+        <TourRoute lang={lang} reach={[15, 30, 45, 60, 75, 90, 105]} />
       </>
     ),
   },
@@ -179,11 +179,11 @@ export const MotionTest: React.FC<{lang: Lang}> = ({lang}) => {
           {runs: tx(copy.s0.category, lang), style: {weight: 'roman', size: size.super, tile: 'white', colour: 'orange'}, anim: {at: 36, out: 125, enter: 'settle'}},
         ]}
       />
-      <NameSuper name={name(0)} fn={tx(copy.s4c.fn, lang)} at={135} out={215} />
+      <NameSuper name={name(0)} fn={tx(copy.s4.fn, lang)} at={135} out={215} />
       <Passport lang={lang} x={96} y={(1080 - passportSize.h) / 2} stamps={{m1: 240, m2: 262, unlock: 284}} opacity={frame >= 225 ? 1 : 0} />
-      <MissionTile title={copy.s4d.m1.title[lang]} desc={copy.s4d.m1.desc[lang]} lang={lang} at={240} out={262} x={96 + passportSize.w + 56} y={(1080 - passportSize.h) / 2 + slotY[0]} />
-      <MissionTile title={copy.s4d.m2.title[lang]} desc={copy.s4d.m2.desc[lang]} lang={lang} at={262} out={284} x={96 + passportSize.w + 56} y={(1080 - passportSize.h) / 2 + slotY[1]} />
-      <MissionTile title={copy.s4d.unlock.title[lang]} lang={lang} at={284} x={96 + passportSize.w + 56} y={(1080 - passportSize.h) / 2 + slotY[2]} />
+      <MissionTile title={copy.s5.m1.title[lang]} desc={copy.s5.m1.desc[lang]} lang={lang} at={240} out={262} x={96 + passportSize.w + 56} y={(1080 - passportSize.h) / 2 + slotY[0]} />
+      <MissionTile title={copy.s5.m2.title[lang]} desc={copy.s5.m2.desc[lang]} lang={lang} at={262} out={284} x={96 + passportSize.w + 56} y={(1080 - passportSize.h) / 2 + slotY[1]} />
+      <MissionTile title={copy.s5.unlock.title[lang]} lang={lang} at={284} x={96 + passportSize.w + 56} y={(1080 - passportSize.h) / 2 + slotY[2]} />
     </AbsoluteFill>
   );
 };
