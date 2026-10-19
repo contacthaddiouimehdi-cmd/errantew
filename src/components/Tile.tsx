@@ -150,7 +150,7 @@ export const TileView: React.FC<{
   );
 };
 
-export type Align = 'left' | 'center' | 'right';
+export type Align = 'left' | 'center' | 'right' | 'group'; // group: left-aligned stack, centred as a block on x
 export type VAlign = 'top' | 'center' | 'bottom';
 
 export type StackItem = {runs: Run[] | string; style: TileStyle; anim?: Anim; flush?: boolean}; // flush: no stagger offset for this tile
@@ -172,12 +172,18 @@ export const TileStack: React.FC<{
   const layouts = items.map((it) => layoutTile(toRuns(it.runs), it.style));
   const total = layouts.reduce((s, l) => s + l.h, 0);
   let top = vAlign === 'top' ? y : vAlign === 'center' ? y - total / 2 : y - total;
-  let offset = 0;
+  const offsets = layouts.reduce<number[]>((acc, l, i) => {
+    const prev = i === 0 ? 0 : acc[i - 1];
+    acc.push(i > 0 && arrange === 'stagger' && !items[i].flush ? prev + l.padX : prev);
+    return acc;
+  }, []);
+  const groupLeft = x - Math.max(...layouts.map((l, i) => offsets[i] + l.w)) / 2;
   return (
     <>
       {layouts.map((l, i) => {
-        if (i > 0 && arrange === 'stagger' && !items[i].flush) offset += l.padX;
-        const left = align === 'left' ? x + offset : align === 'center' ? x - l.w / 2 + offset : x - l.w - offset;
+        const offset = offsets[i];
+        const left =
+          align === 'left' ? x + offset : align === 'group' ? groupLeft + offset : align === 'center' ? x - l.w / 2 + offset : x - l.w - offset;
         const a = tileAnim(frame, items[i].anim ?? anim);
         const ty = top;
         top += l.h;

@@ -7,19 +7,19 @@ Living document: open questions, placeholders, deviations. Updated at each check
 | Step | State |
 |---|---|
 | 0 · Inventory | Done. No assets in the repo (`docs/inventory.md`). |
-| 1 · Footage log | **Blocked**: the shared Drive folder "Forgoodconnection" cannot be read from the render container (see Blockers). |
-| 2 · Design system | Built, awaiting checkpoint 2 review (your go-ahead on 19 Oct: "start with the elements available"). |
-| 3 · Animatic | Not started. |
-| 4 · Final | Not started. |
+| 1 · Footage log | **Blocked**: the Drive folder can't be read from the render container. `out/footage_log.md` lists the 36 shots the animatic needs. |
+| 2 · Design system | Approved 19 Oct. |
+| 3 · Animatic | Built, awaiting checkpoint 3 review: `out/preview/animatic_{en,fr}_internal.mp4` (960×540) and `out/stills/`. |
+| 4 · Final | Blocked by the facts and assets listed below. `scripts/render-all.sh` is ready and refuses to run until they are in. |
 
 ## Blockers
 
 1. **Footage folder unreachable.** The Drive connector can see the folder `Forgoodconnection` (owner mahdi@pbcompany.net) but not its files, and direct downloads from `drive.google.com` are refused by this cloud environment's network policy. Either fix works:
    - add `drive.google.com`, `drive.usercontent.google.com` and `*.googleusercontent.com` to the environment's Allowed domains (cloud environment menu → Edit → Network access), or
    - share the folder with contacthaddiouimehdi@gmail.com directly (not only by link), so the connector can list and fetch the files.
-2. **Helvetica Neue 75 Bold / 55 Roman** not supplied. Drafts use FreeSans (a Helvetica clone in the render container). The final must not ship on the fallback.
-3. **Orange master logo** (`public/brand/orange_logo_master.png`) and **sonic logo**: the packshot shows a placeholder. Logo is never redrawn.
-4. **Licensed music**: needed before the animatic is locked to the beat.
+2. **Licensed music.** Without it, cuts sit on a 50-frame grid (2 s) and the stamp hits on f1875, f1935 and f1995. Everything moves to the real beats once the track is in.
+3. **Helvetica Neue 75 Bold / 55 Roman** not supplied. Drafts use FreeSans (a Helvetica clone in the render container).
+4. **Orange master logo** (`public/brand/orange_logo_master.png`) and **sonic logo**: the packshot shows a placeholder. The logo is never redrawn.
 
 ## Missing, handled by the system (no blocker)
 
@@ -28,28 +28,49 @@ Living document: open questions, placeholders, deviations. Updated at each check
 
 ## Facts awaiting the client (`src/facts.ts`)
 
-| Key | Draft shows | Needed |
-|---|---|---|
-| KIDS | 1,500+ in an orange-outlined box | Confirm 1,500+ (estimate) vs 749 (documented) |
-| MEHDI_AMRI_NAME | "Mehdi Amri" in an orange-outlined box | Confirm "Mehdi Amri" vs "Mehdi El Amri" |
-| TEACHERS_TRAINED | [XX] | Result from ministry recap (6,500+ is a target, never shown) |
-| SCHOOLS_REACHED | [XX] | Result from ministry recap (2,200+ is a target, never shown) |
-| STAT_PROBLEM (optional) | slot dropped | Sourced Moroccan cyberbullying figure, if any |
-| ORGANIC_REACH_EXTRA (optional) | not shown | 309.5K, only if the client approves |
+`npx tsx scripts/check-facts.ts` today: **2 failures** (KIDS, MEHDI_AMRI_NAME), 3 slots dropped.
 
-## Design decisions to confirm at checkpoint 2
+| Key | Draft shows | Needed | Final behaviour if still missing |
+|---|---|---|---|
+| KIDS | 1,500+ in an orange-outlined box | Confirm 1,500+ (estimate) vs 749 (documented) | Final blocked |
+| MEHDI_AMRI_NAME | "Mehdi Amri" in an orange-outlined box | Confirm "Mehdi Amri" vs "Mehdi El Amri" | Final blocked |
+| TEACHERS_TRAINED | [XX] | Result from ministry recap (6,500+ is a target, never shown) | S3 line 12, R7 and the lockup's teachers part are dropped; S5 re-times to fill |
+| SCHOOLS_REACHED | [XX] | Result from ministry recap (2,200+ is a target, never shown) | S3 line 12 and R7 dropped |
+| STAT_PROBLEM (optional) | slot skipped | Sourced Moroccan cyberbullying figure, if any | Skipped |
+| ORGANIC_REACH_EXTRA (optional) | not shown | 309.5K, only if the client approves | Not shown |
 
-1. **Tile vertical clear space** is measured from the cap height and the baseline (2/3 of the "o" height each side), so descenders dip into the bottom padding. Lines with and without descenders then share one tile height.
-2. **Wrapped supers** become one tile per line, stacked flush and centred, with balanced line breaks (no orphan words).
-3. **Stacked tiles** ("cut in under the first"): offset right by the second tile's own "o" width. The settle is a 12 px rise over 4 frames, ease-out.
-4. **Name and function**: name in a white tile with black text, function in a black tile with white text.
-5. **Chapter tiles and mission titles** split on " · ": first part orange tile (75 Bold), second part white tile, cut in under it.
-6. **Mission descriptions** start with a capital ("A board game…") because they sit in their own tile (sentence case), unlike the em-dash form in the brief.
-7. **Passport** carries "Digital Hero / Passport" in white inside its orange header (part of the illustration). Stamps: blue (CyberBoard), yellow (Serious Game), orange (Gaming zone). Blue and yellow appear nowhere else in the film.
-8. **Place supers** on the tour route: name 56 px (75 Bold) in white tiles, date 40 px (55 Roman) on black. Stops alternate above and below the line, and end tiles are clamped inside the 96 px margins.
-9. **French spacing** uses U+00A0 (non-breaking space) before : ! ? % and as the thousands separator. Tell me if you prefer the narrow U+202F before ! ? and in numbers.
-10. **ReSIS in French** is written "Centre ReSIS". Please confirm the official name.
+Note: the brief says to drop R7 and the lockup's teachers part. I apply the same rule to S3 line 12, which carries the same two numbers.
+
+## Animatic (checkpoint 3)
+
+Timings are final per the arc (3,000 frames, exactly 2:00 at 25 fps, checked with ffprobe). Scene by scene (local frames):
+
+- **S0** f0–125. Internal: title tile at f10, B and C cut in at f30 and f38, 8-frame fade ending f125. External toggle: "Orange" (orange on white) / "presents" f6–56, then the title tile (orange) from f62.
+- **S1** 375 frames. Panel shots cut every 50 frames. Lines 2 and 4 on pure black at headline size. Line 4 lands on local f280, the planned first beat hit. The STAT_PROBLEM slot is skipped while null.
+- **S2** 250 frames. Split screen; the inactive half dims to 40% for lines 6 and 7, each set under its half. Line 8 on black, headline size.
+- **S3** 550 frames. Chapter on black, three recap shots with lines 9–11. "Built with" + partner band on black (f150–260). Line 12 on black with count-ups.
+- **S4a** 175 frames: chapter (36), triptych + line 13, the three words cut in 6 frames apart on their panels, then line 14 on black (61 frames).
+- **S4b** 200 frames: route drawn over 140 frames, stops every ~20 frames, tour panels at 25% swap at f100. Line 15 in an orange tile.
+- **S4c** 100 frames: panel off-centre left. Name super and line 16 on the right.
+- **S4d** 300 frames: line 17 alone on black, passport from f55, stamps at f100 / f160 / f220 with matching footage on the right, then line 21.
+- **S4e** 125 frames: workshops triptych, line 22 + #EngageForChange cut in under it, live-content triptych with line 23.
+- **S5** 550 frames: R1–R5 and R7 get 70 frames each (count-up 20, hold, hard cut, 10-frame flash), R6 gets 60. Lockup f2680–2750.
+- **S6** 250 frames: line 24 (2 lines, "holidays" / "vacances" orange), hashtag tile, packshot (10-frame fades, ends on black at f3000).
+
+## Decisions to confirm at checkpoint 3
+
+1. **S4c name super** sits on the right (x 960) with line 16, not lower-left: the panel occupies the left and the brief puts the supers on the right.
+2. **R6 press** is set as the names in orange at 150 px over "In the press" in 55 Roman (the colon form "In the press: Le360…" is split across the two tiles).
+3. **S4a is tight**: the chapter tile holds 36 frames and line 14 holds 61 frames. If line 14 reads too fast, I can take 10–15 frames from line 13.
+4. **Count-ups** show "+" only on the final value (1,500+).
+5. **Lines over footage** sit in the lower third (y 930); lines on black are centred, at headline size where the brief asks for weight.
+
+## Decisions confirmed at checkpoint 2
+
+Tile clear space from cap height and baseline; balanced wrapping; stagger offset = the next tile's "o" width with a 4-frame settle; name in white tile / function in black; chapter and mission titles split on " · " into orange + white tiles; mission descriptions capitalised; passport header text; place supers 56/40 px clamped to margins; U+00A0 for French spacing; "Centre ReSIS" (name still to be confirmed by the client).
 
 ## Deviations from the brief
 
-- None in the design system so far. Footage-dependent stills use a labelled grey gradient stand-in instead of real footage.
+- S4c name super position (see above).
+- No audio yet: music, natural sound, the −8 dB ducking and the loudness pass come with the licensed track (`render-all.sh` runs the two-pass loudnorm to −16 LUFS / −1 dBTP).
+- No subtitles yet: they depend on speech in the footage.

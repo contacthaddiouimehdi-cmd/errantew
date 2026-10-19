@@ -18,7 +18,8 @@ export const factRun = (key: FactKey, lang: Lang, frame: number, at: number, run
       extrapolateRight: 'clamp',
       easing: Easing.out(Easing.cubic),
     });
-    text = formatNumber(f.count.to * p, lang, f.count);
+    // The "+" belongs to the final value only.
+    text = formatNumber(f.count.to * p, lang, {...f.count, plus: f.count.plus && p >= 1});
   }
   return {...run, text, measureAs: f.count ? final : undefined, placeholder: !isReady(key)};
 };

@@ -123,7 +123,7 @@ export const MissionTile: React.FC<{
           runs: l,
           style: descStyle,
           flush: i > 0,
-          anim: {at: at + timing.tileIn, out} as Anim,
+          anim: {at: at + timing.tileIn, out, exit: 'cut'} as Anim,
         })),
       ]}
     />

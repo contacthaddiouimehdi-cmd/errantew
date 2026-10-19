@@ -74,3 +74,27 @@ export const tour = [
   {en: 'Essaouira', fr: 'Essaouira', date: '15.08'},
   {en: 'Casablanca', fr: 'Casablanca', date: '22.08'},
 ] as const;
+
+// Results the client may never supply. In the final render they are dropped
+// (with the lines that carry them) instead of failing; drafts show [XX].
+export const droppable: FactKey[] = ['TEACHERS_TRAINED', 'SCHOOLS_REACHED', 'STAT_PROBLEM', 'ORGANIC_REACH_EXTRA'];
+
+// Whether a value-bearing line is shown: always in drafts (as a placeholder if needed),
+// in the final only when confirmed or not droppable (check-facts catches the rest).
+export const shows = (keys: FactKey[], final: boolean): boolean =>
+  !final || keys.every((k) => isReady(k) || !droppable.includes(k));
+
+// Every fact that can appear on screen (S3 line 12, S4c name super, S5 results and lockup, S1 slot).
+export const onScreen: FactKey[] = [
+  'PEOPLE_ON_SITE',
+  'KIDS',
+  'FIELD_TEAM',
+  'CITIES',
+  'REGIONS',
+  'ORGANIC_REACH',
+  'PRESS',
+  'MEHDI_AMRI_NAME',
+  'TEACHERS_TRAINED',
+  'SCHOOLS_REACHED',
+  'STAT_PROBLEM',
+];
