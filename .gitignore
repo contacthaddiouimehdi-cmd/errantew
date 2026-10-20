@@ -8,3 +8,9 @@ public/footage/**/*.mp4
 public/footage/**/*.mov
 footage_src/
 public/footage/selects/
+
+# Never publish frames of the footage: children appear in it and the repo is public.
+out/overview/
+out/overview_more/
+out/stills/*.png
+out/stills/*.jpg
