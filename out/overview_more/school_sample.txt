@@ -1,0 +1,47 @@
+00 public/footage/school/Beni Mellal Khenifra/IMG_5383.JPG
+01 public/footage/school/Beni Mellal Khenifra/IMG_5397.JPG
+02 public/footage/school/Beni Mellal Khenifra/IMG_5417.JPG
+03 public/footage/school/Beni Mellal Khenifra/IMG_5469.JPG
+04 public/footage/school/Beni Mellal Khenifra/IMG_5480.JPG
+05 public/footage/school/Beni Mellal Khenifra/IMG_5493.JPG
+06 public/footage/school/Casablanca Settat/IMG_5103.JPG
+07 public/footage/school/Casablanca Settat/IMG_5115.JPG
+08 public/footage/school/Casablanca Settat/IMG_5125.JPG
+09 public/footage/school/Casablanca Settat/IMG_5136.JPG
+10 public/footage/school/Casablanca Settat/IMG_5154.JPG
+11 public/footage/school/Casablanca Settat/IMG_5183.JPG
+12 public/footage/school/Casablanca Settat/IMG_5200.JPG
+13 public/footage/school/Casablanca Settat/IMG_5225.JPG
+14 public/footage/school/Casablanca Settat/WhatsApp Image 2026-04-30 at 14.18.09 (1).jpeg
+15 public/footage/school/Drâa-Tafilalet/WhatsApp Image 2026-04-27 at 14.13.05 (10).jpeg
+16 public/footage/school/Drâa-Tafilalet/WhatsApp Image 2026-04-27 at 14.13.05 (17).jpeg
+17 public/footage/school/Drâa-Tafilalet/WhatsApp Image 2026-04-27 at 14.13.05 (23).jpeg
+18 public/footage/school/Drâa-Tafilalet/WhatsApp Image 2026-04-27 at 14.13.05 (9).jpeg
+19 public/footage/school/Drâa-Tafilalet/WhatsApp Image 2026-04-27 at 14.13.31 (12).jpeg
+20 public/footage/school/Drâa-Tafilalet/WhatsApp Image 2026-04-27 at 14.13.31 (7).jpeg
+21 public/footage/school/Fès-Meknès/WhatsApp Image 2026-04-27 at 14.11.48 (2).jpeg
+22 public/footage/school/Fès-Meknès/WhatsApp Image 2026-04-27 at 14.11.49 (12).jpeg
+23 public/footage/school/Fès-Meknès/WhatsApp Image 2026-04-27 at 14.11.49 (19).jpeg
+24 public/footage/school/Fès-Meknès/WhatsApp Image 2026-04-27 at 14.11.49 (7).jpeg
+25 public/footage/school/Guelmim-Oued Noun/WhatsApp Image 2026-04-27 at 13.32.08 (1).jpeg
+26 public/footage/school/Guelmim-Oued Noun/WhatsApp Image 2026-04-27 at 13.32.10 (1).jpeg
+27 public/footage/school/Guelmim-Oued Noun/WhatsApp Image 2026-04-27 at 13.32.16 (1).jpeg
+28 public/footage/school/L'Oriental/WhatsApp Image 2026-04-27 at 15.08.22.jpeg
+29 public/footage/school/L'Oriental/WhatsApp Image 2026-04-27 at 15.08.25 (13).jpeg
+30 public/footage/school/L'Oriental/WhatsApp Image 2026-04-27 at 15.08.25 (2).jpeg
+31 public/footage/school/L'Oriental/WhatsApp Image 2026-04-27 at 15.08.25 (9).jpeg
+32 public/footage/school/Laâyoune-Sakia El Hamra/WhatsApp Image 2026-04-27 at 14.11.49 (4).jpeg
+33 public/footage/school/Laâyoune-Sakia El Hamra/WhatsApp Image 2026-04-27 at 14.13.05 (1).jpeg
+34 public/footage/school/Laâyoune-Sakia El Hamra/WhatsApp Image 2026-04-27 at 14.13.05 (4).jpeg
+35 public/footage/school/Marrakech Safi/IMG_3696.JPG
+36 public/footage/school/Rabat-Salé-Kénitra/WhatsApp Image 2026-04-27 at 13.16.44 (1).jpeg
+37 public/footage/school/Rabat-Salé-Kénitra/WhatsApp Image 2026-04-27 at 13.16.44 (2).jpeg
+38 public/footage/school/Rabat-Salé-Kénitra/WhatsApp Image 2026-04-27 at 13.16.44 (9).jpeg
+39 public/footage/school/Souss-Massa/WhatsApp Image 2026-04-27 at 15.09.32 (3).jpeg
+40 public/footage/school/Souss-Massa/WhatsApp Image 2026-04-27 at 15.09.32.jpeg
+41 public/footage/school/Tanger Tetouan Hoceima/IMG_5539.JPG
+42 public/footage/school/Tanger Tetouan Hoceima/IMG_5553.JPG
+43 public/footage/school/Tanger Tetouan Hoceima/IMG_5576.JPG
+44 public/footage/school/dakhla oued dahab/IMG_9249.JPG
+45 public/footage/school/dakhla oued dahab/IMG_9278.JPG
+46 public/footage/school/dakhla oued dahab/IMG_E9272.JPG

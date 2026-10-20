@@ -4,3 +4,7 @@ out/*.mp4
 out/preview/
 out/.bundle/
 out/stills/components/
+public/footage/**/*.mp4
+public/footage/**/*.mov
+footage_src/
+public/footage/selects/

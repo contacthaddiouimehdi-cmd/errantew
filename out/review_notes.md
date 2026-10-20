@@ -7,7 +7,7 @@ Living document: open questions, placeholders, deviations. Updated at each check
 | Step | State |
 |---|---|
 | 0 · Inventory | Done. No assets in the repo (`docs/inventory.md`). |
-| 1 · Footage log | **Blocked**: footage unreachable. `out/footage_log.md` lists the 36 shots the film needs. |
+| 1 · Footage log | **Done 20 Oct**, awaiting approval: 42 shots selected from the Drive rushes and school photos (`out/footage_log.md`); preview rendered with real footage. |
 | 2 · Design system | Approved 19 Oct. |
 | 3 · Animatic | **v2 rebuilt on the FGC_VF storytelling** (orange thread, digital impact, 100 BPM grid). Awaiting review. |
 | 4 · Final | Blocked by the facts and assets below. `scripts/render-all.sh` refuses to run until they are in. |
@@ -17,7 +17,7 @@ Previews: `out/preview/animatic_{en,fr}_internal_beatguide.mp4` (1080p, with a t
 ## What changed in v2 (FGC_VF)
 
 - **The orange thread** runs through the whole film (`src/components/Thread.tsx`): it ties a knot (S1 line 2), grows into a tangle (line 4), unties (line 5), swings upright to split the screen, welds back at the centre (line 8), links the partners one by one, branches into a network of schools, runs like a road (line 14), traces the route with 7 stops on 7 beats, follows Mehdi's ball, draws the passport, turns like a key, splits into branches for the numbers, closes around "One programme · Two seasons" and underlines "holidays" / "vacances". It is gone before the packshot and never touches the logo.
-- **Digital impact first**: S6 is now six KPI screens (setup, reach, Mehdi Amri effect, platforms, ground, all year), from the campaign's organic figures (Jul–Sep 2026).
+- **Digital impact first**: S6 is now six KPI screens (setup, reach, Mehdi El Amri effect, platforms, ground, all year), from the campaign's organic figures (Jul–Sep 2026).
 - **100 BPM grid**: every cut, stamp, route stop and screen change sits on a beat (15 frames). The licensed track should be 100 BPM, phase-aligned to frame 0.
 - **Title tile C** is now "A societal & environmental impact" / "Un impact sociétal et environnemental", per FGC_VF.
 - **Mission 2** description follows FGC_VF ("Un jeu de cartes sur 6 thèmes numériques du quotidien").
@@ -27,14 +27,14 @@ Previews: `out/preview/animatic_{en,fr}_internal_beatguide.mp4` (1080p, with a t
 ## To confirm with you / Orange
 
 1. **Brief conflict, engagement rates.** The original brief said never to show engagement rates; FGC_VF shows "1.6% interaction" (Mehdi collab) and "TikTok 2.5% interaction". I followed FGC_VF. Confirm, or I drop those two lines.
-2. **English adaptation** of the FGC_VF lines is mine (FR is the master). Check in particular: "Mehdi Amri collab", "#1 content of the campaign", "twice the other reels", "4 cross-posts" (Facebook Orange Maroc branch).
+2. **English adaptation** of the FGC_VF lines is mine (FR is the master). Check in particular: "Collab · Mehdi El Amri", "#1 content of the campaign", "twice the other reels", "4 cross-posts" (Facebook Orange Maroc branch).
 3. **Facebook Orange Maroc branch** in screen 1 shows "4 cross-posts" (the 4 Instagram posts), so the five branches add up to 33 while the hero says 29 posts. Alternative: show that branch without a number.
-4. **Mehdi Amri name**, used in S4 and in the S6 kicker, still unconfirmed (Mehdi Amri / Mehdi El Amri).
+4. ~~Name~~: confirmed **Mehdi El Amri** (20 Oct). Still open: which clips show him.
 5. Optional, not shown: + 309.5K sponsored impressions, + 47 followers, 1.0% global interaction rate (FGC_VF lists them as optional or not shown).
 
 ## Blockers
 
-1. **Footage unreachable.** The Drive folders (Forgoodconnection; Orange Talents 2026 / For Good Connections), the Instagram reel and the LinkedIn post are all refused by this cloud environment's network policy, and the Drive connector can see the folders but not their files. Fix: add `drive.google.com`, `drive.usercontent.google.com` and `*.googleusercontent.com` to the environment's Allowed domains (cloud environment menu → Edit → Network access), or share the folders directly with contacthaddiouimehdi@gmail.com.
+1. ~~Footage unreachable~~: solved 20 Oct (Drive domains allowed). Open footage points: which clips show Mehdi El Amri, and the Série #1 reel (see `out/footage_log.md`).
 2. **Licensed music** (100 BPM, two proposals expected per FGC_VF). The preview uses a temp beat guide (`scripts/beat-guide.sh`), never the final audio.
 3. **Helvetica Neue 75 Bold / 55 Roman**. Drafts use FreeSans.
 4. **Orange master logo** and **sonic logo**. The packshot shows a placeholder.
@@ -46,12 +46,11 @@ Previews: `out/preview/animatic_{en,fr}_internal_beatguide.mp4` (1080p, with a t
 
 ## Facts (`src/facts.ts`)
 
-`npx tsx scripts/check-facts.ts`: **2 failures** (KIDS, MEHDI_AMRI_NAME); TEACHERS_TRAINED, SCHOOLS_REACHED, STAT_PROBLEM dropped in the final if still null. All FGC_VF digital figures are entered as confirmed with FGC_VF as their source.
+`npx tsx scripts/check-facts.ts`: **1 failure** (KIDS); TEACHERS_TRAINED, SCHOOLS_REACHED, STAT_PROBLEM dropped in the final if still null. All FGC_VF digital figures are entered as confirmed with FGC_VF as their source. **Name confirmed 20 Oct: Mehdi El Amri** ("Aamri" in Drive is the same person). The ministry recap shows 1 300 middle schools covered and 4 380 "ressources éducatives" trained: see `out/footage_log.md` for the wording decision.
 
 | Key | Draft shows | Needed | Final behaviour if still missing |
 |---|---|---|---|
 | KIDS | 1,500+ in an orange-outlined box | 1,500+ (estimate) vs 749 (documented) | Final blocked |
-| MEHDI_AMRI_NAME | "Mehdi Amri" in an orange-outlined box | Spelling | Final blocked |
 | TEACHERS_TRAINED / SCHOOLS_REACHED | [XX] | Ministry results (targets never shown) | S3 line 12 and S6 screen 6 numbers dropped; the lockup stays |
 
 ## Timeline (25 fps, 3,000 frames, 2:00; beats every 15 frames)

@@ -65,7 +65,7 @@ const Reach: React.FC<{lang: Lang; f: number}> = ({lang, f}) => {
   );
 };
 
-// 3 · The Mehdi Amri effect: reel in a panel, the thread runs from it to the numbers.
+// 3 · The Mehdi El Amri effect: reel in a panel, the thread runs from it to the numbers.
 const Mehdi: React.FC<{lang: Lang; f: number}> = ({lang, f}) => {
   const a = SCREENS[2];
   const out = FLASHES[2];

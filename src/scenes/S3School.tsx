@@ -53,7 +53,7 @@ export const S3School: React.FC<SceneProps> = ({lang, final}) => {
   return (
     <>
       <Sequence from={0} durationInFrames={150} layout="none">
-        <FullFrame id="s3-recap-1" />
+        <FullFrame id="s3-recap-1" duration={150} />
       </Sequence>
       <ChapterTile text={copy.s3.chapter[lang]} lang={lang} at={0} out={60} />
       <Line t={copy.s3.l9} lang={lang} at={60} out={147} y={Y_LOWER - 40} />
@@ -62,10 +62,13 @@ export const S3School: React.FC<SceneProps> = ({lang, final}) => {
       <PartnerBand lang={lang} y={bandY} at={150} reach={[165, 180, 195, 210, 225]} out={270} />
 
       <Sequence from={270} durationInFrames={90} layout="none">
-        <FullFrame id="s3-recap-2" />
+        <FullFrame id="s3-recap-2" duration={90} />
       </Sequence>
       <Line t={copy.s3.l10} lang={lang} at={274} out={357} y={Y_LOWER - 40} />
 
+      <Sequence from={360} durationInFrames={endNet - 360} layout="none">
+        <FullFrame id="s3-team" opacity={0.3} duration={endNet - 360} />
+      </Sequence>
       {frame >= 360 && frame < endNet ? <Network /> : null}
       <Line t={copy.s3.l11} lang={lang} at={364} out={endNet - 3} y={300} />
 

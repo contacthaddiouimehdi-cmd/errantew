@@ -1,24 +1,17 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Img, interpolate, OffthreadVideo, staticFile, useCurrentFrame} from 'remotion';
 import {shot, wantedShots} from '../footageMap';
 import {HEIGHT, layout as L, WIDTH} from '../tokens';
 import {PlaceholderBox} from './Placeholder';
 
-// Clip from the footage map; a labelled placeholder while the shot is unlogged.
-const Clip: React.FC<{id: string; w: number; h: number; from: number; volume?: number}> = ({id, w, h, from, volume = 0}) => {
-  const {fps} = useVideoConfig();
+// Clip (or photo) from the footage map; a labelled placeholder while the shot is unlogged.
+// Natural sound plays at the select's level unless the caller overrides it.
+const Clip: React.FC<{id: string; w: number; h: number; from: number; volume?: number}> = ({id, w, h, volume}) => {
   const s = shot(id);
   if (!s) return <PlaceholderBox x={0} y={0} w={w} h={h} title={wantedShots[id]?.want ?? `Shot · ${id}`} detail={`${id} · footage pending`} />;
-  return (
-    <OffthreadVideo
-      src={staticFile(s.file)}
-      startFrom={Math.round(s.in * fps)}
-      endAt={Math.round(s.out * fps)}
-      volume={volume}
-      style={{width: w, height: h, objectFit: 'cover'}}
-      key={`${id}-${from}`}
-    />
-  );
+  const style = {width: w, height: h, objectFit: 'cover' as const};
+  if (s.image) return <Img src={staticFile(s.file)} style={style} />;
+  return <OffthreadVideo src={staticFile(s.file)} volume={volume ?? s.volume} style={style} />;
 };
 
 // Vertical shot as a clean 600 × 1067 panel on black. Square corners, never stretched,
@@ -61,12 +54,18 @@ export const Triptych: React.FC<{ids: [string, string, string]; cuts?: [number, 
   </>
 );
 
-// Horizontal footage at full frame (recap).
-export const FullFrame: React.FC<{id: string; opacity?: number; volume?: number}> = ({id, opacity = 1, volume}) => (
-  <AbsoluteFill style={{opacity}}>
-    <Clip id={id} w={WIDTH} h={HEIGHT} from={0} volume={volume} />
-  </AbsoluteFill>
-);
+// Horizontal footage or photo at full frame, with the same slow push-in (100% → 104%).
+export const FullFrame: React.FC<{id: string; opacity?: number; volume?: number; duration?: number}> = ({id, opacity = 1, volume, duration = 150}) => {
+  const frame = useCurrentFrame();
+  const scale = shot(id) ? interpolate(frame, [0, duration], [1, 1 + L.panelPushIn], {extrapolateRight: 'clamp'}) : 1;
+  return (
+    <AbsoluteFill style={{opacity, overflow: 'hidden'}}>
+      <div style={{width: WIDTH, height: HEIGHT, transform: `scale(${scale})`}}>
+        <Clip id={id} w={WIDTH} h={HEIGHT} from={0} volume={volume} />
+      </div>
+    </AbsoluteFill>
+  );
+};
 
 // Left half: 16:9 recap scaled into the half (960 × 540). Right half: vertical panel.
 // The inactive half dims to 40%.

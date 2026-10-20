@@ -1,0 +1,52 @@
+{
+  "_doc": "Shot selection (checkpoint 1). Each id is a placement in the film; src is relative to footage_src/ (or public/footage/ for the two edits). in/dur in seconds of the source. vol = natural sound level (0 = muted). scripts/make-selects.py conforms each to public/footage/selects/<id>.mp4 (H.264 1080x1920, 25 fps) or .jpg.",
+  "selects": [
+    {"id": "s1-phone-1", "src": "raw/For Good Connections/Rushes/IMG_4793.mov", "in": 0.5, "dur": 2.4, "vol": 0, "note": "Hands on a tablet game"},
+    {"id": "s1-phone-2", "src": "raw/For Good Connections/Rushes/IMG_4821.mov", "in": 0.6, "dur": 2.0, "vol": 0, "note": "Kid gaming, from behind"},
+    {"id": "s1-crowd-1", "src": "raw/For Good Connections/Rushes/IMG_4792.mov", "in": 0.3, "dur": 2.6, "vol": 0, "note": "Kids in FGC T-shirts in the Dome, from behind"},
+    {"id": "s1-crowd-2", "src": "raw/For Good Connections/Rushes/IMG_4797.mov", "in": 0.4, "dur": 2.0, "vol": 0, "note": "Three kids sitting, reading"},
+
+    {"id": "s2-recap-school", "src": "school/Casablanca Settat/IMG_5103.JPG", "image": true, "note": "Training session, Casablanca-Settat"},
+    {"id": "s2-bestof-tour", "src": "raw/For Good Connections/Rushes/IMG_4927.mov", "in": 0.5, "dur": 5.0, "vol": 0, "note": "Coach with kids, football workshop"},
+
+    {"id": "s3-recap-1", "src": "school/Rabat-Salé-Kénitra/WhatsApp Image 2026-04-27 at 13.16.44 (2).jpeg", "image": true, "note": "Slide: Un dispositif national pour protéger les élèves"},
+    {"id": "s3-recap-2", "src": "school/Casablanca Settat/IMG_5136.JPG", "image": true, "note": "Trainer presenting the national programme, Casablanca-Settat"},
+    {"id": "s3-team", "src": "school/Casablanca Settat/IMG_5225.JPG", "image": true, "note": "Resource team with pupils, behind the network (30%)"},
+
+    {"id": "s4-crowd", "src": "raw/Foot x Aamri/Essaouira/IMG_4990.mov", "in": 0.5, "dur": 2.8, "vol": 0.5, "note": "Essaouira crowd around the pitch"},
+    {"id": "s4-stage", "src": "raw/Artistes/IMG_3624.MOV", "in": 4.0, "dur": 2.8, "vol": 0, "note": "Orange Talents stage"},
+    {"id": "s4-football", "src": "raw/Foot x Aamri/IMG_3939.mov", "in": 5.0, "dur": 2.8, "vol": 0, "note": "Kids playing, Orange Talents goal"},
+    {"id": "s4-crowd-2", "src": "raw/Foot x Aamri/Essaouira/IMG_4977.mov", "in": 10.6, "dur": 2.0, "vol": 0.5, "note": "Crowd close, Essaouira"},
+    {"id": "s4-stage-2", "src": "raw/Artistes/IMG_3659.MOV", "in": 4.0, "dur": 2.0, "vol": 0, "note": "Singer, Orange Talents stage"},
+    {"id": "s4-football-2", "src": "raw/Foot x Aamri/IMG_8312.MOV", "in": 3.5, "dur": 2.0, "vol": 0, "note": "Juggling, ball in the air"},
+    {"id": "s4-word-football", "src": "raw/Foot x Aamri/Essaouira/IMG_4998.mov", "in": 3.0, "dur": 2.0, "vol": 0, "note": "Kids dribbling"},
+    {"id": "s4-word-music", "src": "raw/Artistes/IMG_4236.MOV", "in": 8.0, "dur": 2.0, "vol": 0, "note": "Singer under red light"},
+    {"id": "s4-word-gaming", "src": "raw/Gaming/IMG_5660.mov", "in": 1.0, "dur": 2.0, "vol": 0, "note": "eSport stage"},
+    {"id": "s4-tour-1", "src": "raw/Prises villes/IMG_3680.mov", "in": 0.5, "dur": 3.1, "vol": 0, "note": "City, building with flag"},
+    {"id": "s4-tour-2", "src": "raw/Prises villes/IMG_4112.MOV", "in": 0.5, "dur": 3.1, "vol": 0, "note": "Essaouira ramparts"},
+    {"id": "s4-tour-3", "src": "raw/Prises villes/IMG_9239.MOV", "in": 0.0, "dur": 3.0, "vol": 0, "note": "Tangier seafront"},
+    {"id": "s4-tour-4", "src": "raw/Prises villes/IMG_4116.MOV", "in": 1.0, "dur": 3.1, "vol": 0, "note": "Essaouira port"},
+    {"id": "s4-tour-5", "src": "raw/Prises villes/IMG_4145 2.mov", "in": 0.5, "dur": 3.1, "vol": 0, "note": "Sunset beach"},
+    {"id": "s4-tour-6", "src": "raw/Prises villes/IMG_4118.MOV", "in": 0.5, "dur": 3.1, "vol": 0, "note": "Mogador island"},
+    {"id": "s4-mehdi", "src": "raw/Foot x Aamri/IMG_6922.MOV", "in": 3.0, "dur": 4.6, "vol": 0.5, "note": "CANDIDATE, identity to confirm: freestyler in white T-shirt with a kid"},
+
+    {"id": "s5-dome", "src": "raw/For Good Connections/Rushes/IMG_4789.MOV", "in": 0.2, "dur": 2.0, "vol": 0, "note": "The Orange Dome from outside"},
+    {"id": "s5-cyberboard", "src": "raw/For Good Connections/Rushes/IMG_3923.MOV", "in": 0.3, "dur": 2.0, "vol": 0, "note": "CyberBoard from above"},
+    {"id": "s5-seriousgame", "src": "raw/For Good Connections/Rushes/IMG_8520.MOV", "in": 0.3, "dur": 2.0, "vol": 0, "note": "Card game on the table"},
+    {"id": "s5-gaming", "src": "raw/For Good Connections/Rushes/IMG_4825.mov", "in": 0.2, "dur": 2.0, "vol": 0.4, "note": "Kid gaming in the Dome"},
+    {"id": "s5-certificates", "src": "raw/For Good Connections/Rushes/Vidéo 21-08-2026 16 32 09.mov", "in": 0.1, "dur": 2.0, "vol": 0.8, "note": "Kids celebrating in the Dome"},
+    {"id": "s5-workshop-1", "src": "raw/For Good Connections/Rushes/IMG_4779.mov", "in": 2.0, "dur": 3.2, "vol": 0, "note": "Volunteer in FGC T-shirt helping kids"},
+    {"id": "s5-workshop-2", "src": "raw/For Good Connections/Rushes/IMG_4776.mov", "in": 0.5, "dur": 3.2, "vol": 0, "note": "Volunteer with kids at a table"},
+    {"id": "s5-workshop-3", "src": "raw/For Good Connections/Rushes/IMG_4912.mov", "in": 0.1, "dur": 3.1, "vol": 0, "note": "Volunteers in FGC T-shirts"},
+    {"id": "s5-live-1", "src": "raw/For Good Connections/Stories/00ba5b1e667643c6a46e4b34d4001c7b.mov", "in": 1.0, "dur": 3.0, "vol": 0, "note": "Published story, Dome"},
+    {"id": "s5-live-2", "src": "raw/For Good Connections/Stories/8e532ad0932c4a79b29fb2b145b37860.mov", "in": 3.0, "dur": 2.8, "vol": 0, "note": "Published story, CyberBoard"},
+    {"id": "s5-live-3", "src": "raw/For Good Connections/Stories/ed45141ed059411f80ea7009f63859e8.mov", "in": 7.6, "dur": 2.6, "vol": 0, "note": "Published story, Passeport numérique"},
+
+    {"id": "s6-mehdi-reel", "src": "raw/Foot x Aamri/IMG_6922.MOV", "in": 8.0, "dur": 3.4, "vol": 0, "note": "STAND-IN for the Série #1 reel (not in Drive): Mehdi candidate rush"},
+    {"id": "s6-flash-1", "src": "raw/For Good Connections/Rushes/Vidéo 21-08-2026 16 32 09.mov", "in": 1.2, "dur": 0.5, "vol": 0, "note": "Smiles"},
+    {"id": "s6-flash-2", "src": "raw/Foot x Aamri/Essaouira/IMG_4977.mov", "in": 12.5, "dur": 0.5, "vol": 0, "note": "Crowd"},
+    {"id": "s6-flash-3", "src": "raw/For Good Connections/Stories/76a53499e41f4db89885368bc327653e.mov", "in": 1.2, "dur": 0.5, "vol": 0, "note": "Live content"},
+    {"id": "s6-flash-4", "src": "raw/For Good Connections/Rushes/IMG_4909.mov", "in": 4.5, "dur": 0.5, "vol": 0, "note": "Coach with kids"},
+    {"id": "s6-flash-5", "src": "raw/For Good Connections/Rushes/IMG_9502.MOV", "in": 0.5, "dur": 0.5, "vol": 0, "note": "Passeport numérique"}
+  ]
+}

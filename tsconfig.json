@@ -9,7 +9,15 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["DOM", "ES2020"]
+    "lib": [
+      "DOM",
+      "ES2020"
+    ],
+    "resolveJsonModule": true
   },
-  "include": ["src", "scripts", "remotion.config.ts"]
+  "include": [
+    "src",
+    "scripts",
+    "remotion.config.ts"
+  ]
 }

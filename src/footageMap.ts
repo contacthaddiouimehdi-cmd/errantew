@@ -1,12 +1,19 @@
 import {hasAsset, paths} from './assets';
+import selection from './selects.json';
 
-// Shot ids → source file + in/out in seconds of the source (from footage_log.md).
-// Every scene names the shot it wants; until an id is mapped here and its file is
-// present, the scene renders a labelled placeholder panel.
+// Shot ids → conformed file in public/footage/selects/ (built by scripts/make-selects.py
+// from src/selects.json). A placement whose id has no select renders a labelled placeholder.
 
-export type Shot = {file: string; in: number; out: number; note?: string};
+export type Shot = {file: string; in: number; out: number; image: boolean; volume: number; note?: string};
 
-export const footageMap: Record<string, Shot> = {};
+type Select = {id: string; src: string; in?: number; dur?: number; vol?: number; image?: boolean; note?: string};
+
+export const footageMap: Record<string, Shot> = Object.fromEntries(
+  (selection.selects as Select[]).map((s) => [
+    s.id,
+    {file: `footage/selects/${s.id}.${s.image ? 'jpg' : 'mp4'}`, in: 0, out: s.dur ?? 0, image: Boolean(s.image), volume: s.vol ?? 0, note: s.note},
+  ]),
+);
 
 export const shot = (id: string): Shot | null => {
   const s = footageMap[id];
@@ -33,10 +40,17 @@ export const wantedShots: Record<string, {o: 'v' | 'h'; want: string}> = {
   's4-stage-2': {o: 'v', want: 'Stage, cut on the beat'},
   's4-football-2': {o: 'v', want: 'Football, cut on the beat'},
   's4-gaming': {o: 'v', want: 'Gaming (no publisher logos visible)'},
+  's4-word-football': {o: 'v', want: 'Football · kids dribbling'},
+  's4-word-music': {o: 'v', want: 'Music · stage'},
+  's4-word-gaming': {o: 'v', want: 'Gaming · eSport stage'},
+  's4-tour-4': {o: 'v', want: 'Tour city D (25%)'},
+  's4-tour-5': {o: 'v', want: 'Tour city E (25%)'},
+  's4-tour-6': {o: 'v', want: 'Tour city F (25%)'},
+  's3-team': {o: 'h', want: 'Resource team with pupils (30% behind the network)'},
   's4-tour-1': {o: 'v', want: 'Tour stage A (25% behind the route)'},
   's4-tour-2': {o: 'v', want: 'Tour stage B (25%)'},
   's4-tour-3': {o: 'v', want: 'Tour stage C (25%)'},
-  's4-mehdi': {o: 'v', want: 'Mehdi Amri freestyle · the thread follows the ball'},
+  's4-mehdi': {o: 'v', want: 'Mehdi El Amri freestyle · the thread follows the ball'},
   's5-dome': {o: 'v', want: 'Kids entering the Orange Dome'},
   's5-cyberboard': {o: 'v', want: 'Kids playing CyberBoard'},
   's5-seriousgame': {o: 'v', want: 'Kids playing the Serious Game cards'},
@@ -48,7 +62,7 @@ export const wantedShots: Record<string, {o: 'v' | 'h'; want: string}> = {
   's5-live-1': {o: 'v', want: 'Phones filming'},
   's5-live-2': {o: 'v', want: 'Stories shot live'},
   's5-live-3': {o: 'v', want: 'Live from the stage'},
-  's6-mehdi-reel': {o: 'v', want: 'Reel Série #1 · Mehdi Amri collab (excerpt)'},
+  's6-mehdi-reel': {o: 'v', want: 'Reel Série #1 · Mehdi El Amri collab (excerpt)'},
   's6-flash-1': {o: 'v', want: 'Field flash · smiles'},
   's6-flash-2': {o: 'v', want: 'Field flash · crowd'},
   's6-flash-3': {o: 'v', want: 'Field flash · phones, social'},

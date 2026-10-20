@@ -12,7 +12,7 @@ import {Line, SceneProps, Shot, Y_CENTRE} from './common';
 
 // f1300–1775 (475) · Season 2, on tour. The music switches to full groove; beats on local 5 + 15n.
 // Triptych → the thread runs like a road (line 14) → one word per panel → the thread
-// traces the route, 7 stops on 7 beats → Mehdi Amri, the thread follows the ball.
+// traces the route, 7 stops on 7 beats → Mehdi El Amri, the thread follows the ball.
 
 // Juggling path over the Mehdi panel (stand-in until the ball is keyframed on the real shot).
 const BALL: Pt[] = through(
@@ -43,7 +43,7 @@ export const S4Tour: React.FC<SceneProps> = ({lang}) => {
       <Line t={copy.s4.l14} lang={lang} at={113} out={170} exit="cut" y={Y_CENTRE - 60} />
 
       {/* One word per panel, cut in 6 frames apart. */}
-      {(['s4-football', 's4-stage', 's4-gaming'] as const).map((id, i) => (
+      {(['s4-word-football', 's4-word-music', 's4-word-gaming'] as const).map((id, i) => (
         <Shot key={id} id={id} from={170} dur={45} x={triptychX[i]} />
       ))}
       {words.map((w, i) => (
@@ -58,12 +58,15 @@ export const S4Tour: React.FC<SceneProps> = ({lang}) => {
 
       {/* The route: 7 stops on 7 beats, over dim tour footage. No map. */}
       {[0, 1, 2].map((i) => (
-        <Shot key={i} id={`s4-tour-${i + 1}`} from={215} dur={150} x={triptychX[i]} opacity={L.routeBackdrop} />
+        <React.Fragment key={i}>
+          <Shot id={`s4-tour-${i + 1}`} from={215} dur={75} x={triptychX[i]} opacity={L.routeBackdrop} />
+          <Shot id={`s4-tour-${i + 4}`} from={290} dur={75} x={triptychX[i]} opacity={L.routeBackdrop} />
+        </React.Fragment>
       ))}
       <TourRoute lang={lang} reach={reach} y={470} out={365} />
       <Line t={copy.s4.l15} lang={lang} at={320} out={365} exit="cut" style={styles.super('orange', 'white')} y={900} />
 
-      {/* Mehdi Amri: signature moment, the thread follows the ball. */}
+      {/* Mehdi El Amri: signature moment, the thread follows the ball. */}
       <Shot id="s4-mehdi" from={365} dur={110} x={240} />
       {f >= 368 ? <Thread paths={[BALL]} from={Math.max(0, ballHead - 0.3)} to={ballHead} /> : null}
       <NameSuper name={[factRun('MEHDI_AMRI_NAME', lang, f, 0)]} fn={tx(copy.s4.fn, lang)} at={372} out={475} x={960} y={880} />

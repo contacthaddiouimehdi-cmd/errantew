@@ -17,9 +17,11 @@ done
 if [ "${STILLS_ONLY:-0}" != 1 ]; then
   out=out/preview/animatic_${LANG_}_${VERSION}.mp4
   npx remotion render out/.bundle FGC-CaseStudy "$out" \
-    --props="$props" --scale="${SCALE:-0.5}" --codec=h264 --crf="${CRF:-26}" --log=error
+    --props="$props" --scale="${SCALE:-0.5}" --codec=h264 --crf="${CRF:-26}" --enforce-audio-track --log=error
   # Temp 100 BPM beat guide so the edit can be judged on rhythm (preview only, not the music).
   [ -f out/preview/beat_guide_100bpm.wav ] || bash scripts/beat-guide.sh
-  ffmpeg -v error -y -i "$out" -i out/preview/beat_guide_100bpm.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest "${out%.mp4}_beatguide.mp4"
-  echo "✓ $out (silent) and ${out%.mp4}_beatguide.mp4 (temp beat guide)"
+  # Natural sound from the shots + temp beat guide (preview only, not the music).
+  ffmpeg -v error -y -i "$out" -i out/preview/beat_guide_100bpm.wav \
+    -filter_complex "[0:a][1:a]amix=inputs=2:duration=first:normalize=0[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k "${out%.mp4}_beatguide.mp4"
+  echo "✓ $out (natural sound only) and ${out%.mp4}_beatguide.mp4 (+ temp beat guide)"
 fi
